@@ -1,53 +1,70 @@
 import { Injectable, UseFilters } from '@nestjs/common';
-import { elementAt } from 'rxjs';
+import console, { Console } from 'console';
 import { Apartment } from 'src/Models/apartment.model';
+import { apartmentIDDto } from './dto/apartmentID.dto';
 import { createApartmentDto } from './dto/createApartment.dto';
 
-
 const apartments: Apartment[] = [];
-
-function arrayRemove(arr, value) { 
-    
-    return arr.filter(function(ele){ 
-        return ele != value; 
-    });
-}
 
 @Injectable()
 export class ApartmentService {
   createApartment(apartment: createApartmentDto) {
-    const newApartment = new Apartment(apartment.Apartment_ID, apartment.Occupied, apartment.Apartment_Number, apartment.Apartment_Cost);
+    const newApartment = new Apartment(
+      apartment.Apartment_ID,
+      apartment.Occupied,
+      apartment.Apartment_Number,
+      apartment.Apartment_Cost,
+    );
     apartments.push(newApartment);
-    return newApartment; 
-}
-
-getApartments(){
-    return apartments;
-}
-
-updateApartment(apartment: createApartmentDto){
-    const newApartment = new Apartment(apartment.Apartment_ID, apartment.Occupied, apartment.Apartment_Number, apartment.Apartment_Cost);
-
-    apartments.forEach(element=>{
-        if(element.Apartment_ID==3){
-            element.Apartment_ID = apartment.Apartment_ID;
-            element.Occupied = apartment.Occupied;
-            element.Apartment_Number = apartment.Apartment_Number;
-            element.Apartment_Cost = apartment.Apartment_Cost;
-        }
-    })
     return newApartment;
-    
-}
+  }
 
-deleteApartment(Apartmen_ID: number){
-    const index = apartments.findIndex(object => {
-        return object.Apartment_ID == 6;
-      });
-      console.log(index);
-    
-      apartments.splice(index);
-      console.log(apartments);
-      return Apartmen_ID;
-}
+  getApartments() {
+    return apartments;
+  }
+
+  updateApartment(apartment: createApartmentDto) {
+    const newApartment = new Apartment(
+      apartment.Apartment_ID,
+      apartment.Occupied,
+      apartment.Apartment_Number,
+      apartment.Apartment_Cost,
+    );
+
+    apartments.forEach((element) => {
+      if (element.Apartment_ID == 2) {
+        element.Apartment_ID = apartment.Apartment_ID;
+        element.Occupied = apartment.Occupied;
+        element.Apartment_Number = apartment.Apartment_Number;
+        element.Apartment_Cost = apartment.Apartment_Cost;
+      }
+    });
+    return newApartment;
+  }
+
+  deleteApartment(apartment: apartmentIDDto) {
+    const holder = {apartment};
+    const index = apartments.findIndex((object) => {
+      return object.Apartment_ID == apartment.Apartment_ID;
+    });
+
+    apartments.splice(index,1);
+    return holder.apartment;
+  }
+
+  getApartmentTotalCost(apartment: apartmentIDDto) {
+    // apartments.forEach((element) => {
+    //   if (element.Apartment_ID == apartment.Apartment_ID) {
+    //     console.log(element.Apartment_ID);
+    //     //When applayong query apply a join with utilities entity table and get the sum of all the unit costs of each element with the same Apartment_ID reference.
+    //     return { Apartment_Cost: element.Apartment_Cost };
+    //   }
+    // });
+
+    const index = apartments.findIndex((object) => {
+      return object.Apartment_ID == apartment.Apartment_ID;
+    });
+
+    return {Apartment_Cost: apartments[index].Apartment_Cost};
+  }
 }
