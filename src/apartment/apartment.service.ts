@@ -65,6 +65,7 @@ export class ApartmentService {
       return object.Apartment_ID == apartment.Apartment_ID;
     });
 
+    // Here add the sum of all utility costs with the apartment cost when utility operations are implemented.
     return {Apartment_Cost: apartments[index].Apartment_Cost};
   }
 }
