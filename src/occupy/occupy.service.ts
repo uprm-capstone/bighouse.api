@@ -59,4 +59,45 @@ export class OccupyService {
     occupies.splice(index,1);
     return holder.occupy;
   }
+
+  getTerm(occupy: occupyIDDto){
+    const index = occupies.findIndex((object) => {
+      return object.Occupy_ID == occupy.Occupy_ID;
+    });
+
+    return {Start_Date: occupies[index].Start_Date, End_Date: occupies[index].End_Date};
+  }
+
+  getApartmentOccupied(occupy: occupyIDDto){
+    const index = occupies.findIndex((object) => {
+      return object.Occupy_ID == occupy.Occupy_ID;
+    });
+
+    return {Apartment_ID: occupies[index].Apartment_ID};
+  }
+
+  getUserOccupied(occupy: occupyIDDto){
+    const index = occupies.findIndex((object) => {
+      return object.Occupy_ID == occupy.Occupy_ID;
+    });
+
+    return {User_ID: occupies[index].User_ID};
+  }
+
+  getUserOccupiedWithAptm(occupy: {Apartment_ID: number}){
+    const index = occupies.findIndex((object) => {
+      return object.Apartment_ID == occupy.Apartment_ID;
+    });
+
+    return {User_ID: occupies[index].User_ID};
+  }
+
+  getAptmOccupiedWithUser(occupy: {User_ID: number}){
+    const index = occupies.findIndex((object) => {
+      return object.User_ID == occupy.User_ID;
+    });
+
+    return {Apartment_ID: occupies[index].Apartment_ID};
+  }
+
 }

@@ -31,4 +31,29 @@ export class OccupyController {
     getApartmentTotalCost(@Body() occupy: occupyIDDto) : Occupy {
       return this.occupyService.getOccupy(occupy);
     }
+
+    @Get('/get-term')
+    getTerm(@Body() occupy: occupyIDDto) : {Start_Date: Date, End_Date: Date} {
+      return this.occupyService.getTerm(occupy);
+    }
+
+    @Get('/get-apartment-occupied')
+    getApartmentOccupied(@Body() occupy: occupyIDDto) : {Apartment_ID: number} {
+      return this.occupyService.getApartmentOccupied(occupy);
+    }
+
+    @Get('/get-user-occupant')
+    getUserOccupied(@Body() occupy: occupyIDDto) : {User_ID: number} {
+      return this.occupyService.getUserOccupied(occupy);
+    }
+
+    @Get('/get-user-occupant-with-apartment')
+    getUserOccupiedWithAptm(@Body() occupy: {Apartment_ID: number}) : {User_ID: number} {
+      return this.occupyService.getUserOccupiedWithAptm(occupy);
+    }
+
+    @Get('/get-apartment-occupant-with-user')
+    getAptmOccupiedWithUser(@Body() occupy: {User_ID: number}) : {Apartment_ID: number} {
+      return this.occupyService.getAptmOccupiedWithUser(occupy);
+    }
 }
