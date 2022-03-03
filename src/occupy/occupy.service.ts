@@ -39,7 +39,7 @@ export class OccupyService {
     );
 
     occupies.forEach((element) => {
-      if (element.Occupy_ID == 2) {
+      if (element.Occupy_ID == occupy.Occupy_ID) {
         element.Occupy_ID = occupy.Occupy_ID;
         element.User_ID = occupy.User_ID;
         element.Apartment_ID = occupy.Apartment_ID;
