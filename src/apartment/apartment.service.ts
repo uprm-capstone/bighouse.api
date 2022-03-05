@@ -32,7 +32,7 @@ export class ApartmentService {
     );
 
     apartments.forEach((element) => {
-      if (element.Apartment_ID == 2) {
+      if (element.Apartment_ID == apartment.Apartment_ID) {
         element.Apartment_ID = apartment.Apartment_ID;
         element.Occupied = apartment.Occupied;
         element.Apartment_Number = apartment.Apartment_Number;
