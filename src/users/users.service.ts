@@ -28,7 +28,7 @@ export class UsersService {
         const newUser = new User(user.User_ID, user.User_Name, user.User_LastName, user.User_Gender, user.User_Birth, user.User_Email);
 
         users.forEach(element=>{
-            if(element.User_ID==3){
+            if(element.User_ID==user.User_ID){
                 element.User_ID = user.User_ID;
                 element.User_Name = user.User_Name;
                 element.User_LastName = user.User_LastName;
@@ -41,15 +41,13 @@ export class UsersService {
         
     }
 
-    deleteUser(User_ID: number){
+    deleteUser(user: {User_ID:number}){
         const index = users.findIndex(object => {
-            return object.User_ID == 6;
+            return object.User_ID == user.User_ID;
           });
-          console.log(index);
         
-          users.splice(index);
-          console.log(users);
-          return User_ID;
+          users.splice(index,1);
+          return user;
     }
 }
 

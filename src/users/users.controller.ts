@@ -17,13 +17,13 @@ export class UsersController {
     }
 
     @Put('/update-user')
-    updateUser(@Body() user: createUserDto, Old_ID:number): User {
+    updateUser(@Body() user: createUserDto): User {
         return this.userService.updateUser(user);
     }
 
     @Delete('/delete-user')
-    deleteUser(User_ID:number) {
-        return this.userService.deleteUser(User_ID);
+    deleteUser(@Body() user:{User_ID:number}):{User_ID:number} {
+        return this.userService.deleteUser(user);
     }
 
 }
