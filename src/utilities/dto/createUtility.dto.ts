@@ -11,9 +11,11 @@ export class createUtilityDto {
   @IsNumber()
   Apartment_ID: number;
   @IsNotEmpty()
-  Unit_Quantity: Float32Array;
+  @IsNumber()
+  Unit_Quantity: number;
   @IsNotEmpty()
-  Cost_Per_Unit: Float32Array;
+  @IsNumber()
+  Cost_Per_Unit: number;
   @IsNotEmpty()
   @IsString()
   Unit: string;

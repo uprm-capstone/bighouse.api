@@ -22,13 +22,23 @@ export class UtilityController {
     }
   
     @Delete('/delete-utility')
-    deleteOccupy(@Body() utility: {Utility_ID}) : {Utility_ID: number} {
+    deleteOccupy(@Body() utility: {Utility_ID:number}) : {Utility_ID: number} {
       return this.utilityService.deleteUtility(utility);
     }
   
     @Get('/get-utility')
-    getApartmentTotalCost(@Body() utility: {Utility_ID}) : Utilities {
+    getApartmentTotalCost(@Body() utility: {Utility_ID:number}) : Utilities {
       return this.utilityService.getUtility(utility);
+    }
+
+    @Get('/get-utility-total')
+    getTotalUtilityCost(@Body() apartment_ID: {Apartment_ID:number}) : {Utility_Cost: number} {
+      return this.utilityService.getTotalUtilityCost(apartment_ID);
+    }
+
+    @Get('/get-apartment-utilities')
+    getApartmentUtilities(@Body() apartment_ID: {Apartment_ID:number}) : Utilities[] {
+      return this.utilityService.getApartmentUtilities(apartment_ID);
     }
 
 }

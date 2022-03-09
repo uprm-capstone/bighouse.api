@@ -62,4 +62,24 @@ export class UtilityService {
     return holder.id;
   }
 
+  getTotalUtilityCost(apartment_ID:{Apartment_ID:number}){
+    var total = 0;
+    utilities.forEach(element => {
+      if(element.Apartment_ID==apartment_ID.Apartment_ID){
+        total = total + element.Cost_Per_Unit*element.Unit_Quantity;
+      }
+    });
+    return {Utility_Cost: total};
+  }
+
+  getApartmentUtilities(apartment_ID:{Apartment_ID:number}){
+    const ApartmentU: Utilities[] = [];
+    utilities.forEach(element => {
+      if(element.Apartment_ID==apartment_ID.Apartment_ID){
+        ApartmentU.push(element);
+      }
+    });
+    return ApartmentU;
+  }
+
 }
