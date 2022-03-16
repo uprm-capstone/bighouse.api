@@ -25,6 +25,10 @@ export class IssuesService {
     return issues;
   }
 
+  // getAllIssuesOrdered() {
+  //   return 
+  // }
+
   getIssue(id: {Issue_ID:number}) {
     const index = issues.findIndex((object) => {
       return object.Issue_ID == id.Issue_ID;

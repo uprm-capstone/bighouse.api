@@ -28,8 +28,14 @@ export class IssuesController {
     }
   
     @Get('/get-issue')
-    getApartmentTotalCost(@Body() issue: {Issue_ID:number}) : Issues {
+    getIssue(@Body() issue: {Issue_ID:number}) : Issues {
       return this.issuesService.getIssue(issue);
     }
+    
+    // For the time being this si the same as getAllIssues. Once query is added can be sorted by date using the order by Date_Created operation.
+    // @Get('/get-issue-ordered')
+    // getIssueOrdered() : Issues[] {
+    //   return this.issuesService.getAllIssuesOrdered();
+    // }
 
 }
