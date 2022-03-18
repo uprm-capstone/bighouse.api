@@ -18,12 +18,12 @@ export class IssuesController {
     }
   
     @Put('/update-issue')
-    updateOccupy(@Body() issue: createIssuesDto): Issues {
+    updateIssue(@Body() issue: createIssuesDto): Issues {
       return this.issuesService.updateIssue(issue);
     }
   
     @Delete('/delete-issue')
-    deleteOccupy(@Body() issue: {Issue_ID:number}) : {Issue_ID: number} {
+    deleteIssue(@Body() issue: {Issue_ID:number}) : {Issue_ID: number} {
       return this.issuesService.deleteIssue(issue);
     }
   
