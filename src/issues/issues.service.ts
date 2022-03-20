@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Issues } from 'src/Models/issues.model';
 import { createIssuesDto } from './dto/createIssues.dto';
+import { apartments } from 'src/apartment/apartment.service';
 
 const issues: Issues[] = [];
 
@@ -17,7 +18,13 @@ export class IssuesService {
       issue.Description,
       issue.Issue_Type
     );
-    issues.push(newIssue);
+
+    const index = apartments.findIndex((object) => {
+      return object.Apartment_ID == issue.Apartment_ID;
+    });
+    if(index != -1){
+      issues.push(newIssue);
+    }
     return newIssue;
   }
 
@@ -48,7 +55,11 @@ export class IssuesService {
       issue.Issue_Type
     );
 
-    issues.forEach((element) => {
+    const index = issues.findIndex((object) => {
+      return object.Apartment_ID == issue.Apartment_ID;
+    });
+    if(index != -1){
+      issues.forEach((element) => {
       if (element.Issue_ID == issue.Issue_ID) {
         element.Issue_ID = issue.Issue_ID;
         element.Title = issue.Title;
@@ -60,6 +71,8 @@ export class IssuesService {
         element.Issue_Type = issue.Issue_Type;
       }
     });
+    }
+    
     return newIssue;
   }
 
