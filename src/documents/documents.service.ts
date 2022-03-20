@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Documents } from 'src/Models/documents.model';
 import { createDocumentsDto } from './dto/createDocuments.dto';
+import { users } from 'src/users/users.service';
 
 const documents: Documents[] = [];
 
@@ -15,7 +16,12 @@ export class DocumentsService {
       document.Signature,
       document.Require_Signature,
     );
-    documents.push(newDocument);
+    const userVerify = users.findIndex((object) => {
+      return object.User_ID == document.User_ID;
+    });
+    if(userVerify != -1){
+      documents.push(newDocument);
+    }
     return newDocument;
   }
 
@@ -40,7 +46,11 @@ export class DocumentsService {
       document.Require_Signature,
     );
 
-    documents.forEach((element) => {
+    const userVerify = users.findIndex((object) => {
+      return object.User_ID == document.User_ID;
+    });
+    if(userVerify != -1){
+      documents.forEach((element) => {
       if (element.Document_ID == document.Document_ID) {
         element.Document_ID = document.Document_ID;
         element.User_ID = document.User_ID;
@@ -50,6 +60,7 @@ export class DocumentsService {
         element.Require_Signature = document.Require_Signature;
       }
     });
+    }
     return newDocument;
   }
 
