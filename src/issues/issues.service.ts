@@ -69,7 +69,9 @@ export class IssuesService {
       return object.Issue_ID == id.Issue_ID;
     });
 
-    issues.splice(index,1);
+    if(index != -1){
+      issues.splice(index,1);
+    }
     return holder.id;
   }
 }
