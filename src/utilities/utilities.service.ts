@@ -58,7 +58,9 @@ export class UtilityService {
       return object.Utility_ID == id.Utility_ID;
     });
 
-    utilities.splice(index,1);
+    if(index != -1){
+      utilities.splice(index,1);
+    }
     return holder.id;
   }
 
