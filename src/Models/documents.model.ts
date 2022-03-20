@@ -4,7 +4,7 @@ export class Documents {
       public User_ID: number,
       public Document: string,
       public Sign_On: Date,
-      public Signature: Text,
+      public Signature: string,
       public Require_Signature: Boolean,
     ) {}
   }

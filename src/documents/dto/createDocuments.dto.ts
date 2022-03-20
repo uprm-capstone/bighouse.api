@@ -12,8 +12,10 @@ export class createDocumentsDto {
   Document: string;
   @IsNotEmpty()
   Sign_On: Date;
+  // Next element is Text but string as placeholder for testing purposes.
   @IsNotEmpty()
-  Signature: Text;
+  @IsString()
+  Signature: string;
   @IsNotEmpty()
   @IsBoolean()
   Require_Signature: Boolean;

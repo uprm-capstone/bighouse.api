@@ -59,7 +59,9 @@ export class DocumentsService {
       return object.Document_ID == id.Document_ID;
     });
 
-    documents.splice(index,1);
+    if(index != -1){
+      documents.splice(index,1);
+    }
     return holder.id;
   }
 }
