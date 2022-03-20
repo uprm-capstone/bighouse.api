@@ -3,7 +3,7 @@ import { elementAt } from 'rxjs';
 import { User } from 'src/Models/user.model';
 import { createUserDto } from './dto/createUser.dto';
 
-const users: User[] = [];
+export const users: User[] = [];
 
 function arrayRemove(arr, value) { 
     

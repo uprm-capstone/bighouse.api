@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Occupy } from 'src/Models/occupy.model';
 import { createOccupyDto } from './dto/createOccupy.dto';
 import { occupyIDDto } from './dto/occupyID.dto';
+import { users } from '../users/users.service'
 
 const occupies: Occupy[] = [];
 @Injectable()
@@ -14,8 +15,14 @@ export class OccupyService {
       occupy.Start_Date,
       occupy.End_Date,
     );
-    occupies.push(newOccupant);
+    const index = users.findIndex((object) => {
+      return object.User_ID == occupy.User_ID;
+    });
+    if(index != -1){
+      occupies.push(newOccupant);
+    }
     return newOccupant;
+    
   }
 
   getAllOccupy() {
@@ -38,7 +45,11 @@ export class OccupyService {
       occupy.End_Date,
     );
 
-    occupies.forEach((element) => {
+    const index = users.findIndex((object) => {
+      return object.User_ID == occupy.User_ID;
+    });
+    if(index != -1){
+      occupies.forEach((element) => {
       if (element.Occupy_ID == occupy.Occupy_ID) {
         element.Occupy_ID = occupy.Occupy_ID;
         element.User_ID = occupy.User_ID;
@@ -47,6 +58,8 @@ export class OccupyService {
         element.End_Date = occupy.End_Date;
       }
     });
+    }
+    
     return newOccupant;
   }
 
