@@ -56,7 +56,9 @@ export class OccupyService {
       return object.Occupy_ID == occupy.Occupy_ID;
     });
 
-    occupies.splice(index,1);
+    if(index != -1){
+      occupies.splice(index,1);
+    }
     return holder.occupy;
   }
 
@@ -65,7 +67,12 @@ export class OccupyService {
       return object.Occupy_ID == occupy.Occupy_ID;
     });
 
-    return {Start_Date: occupies[index].Start_Date, End_Date: occupies[index].End_Date};
+    if(index != -1){
+      return {Start_Date: occupies[index].Start_Date, End_Date: occupies[index].End_Date};
+    }
+    else{
+      return {Start_Date: null, End_Date: null};
+    }
   }
 
   getApartmentOccupied(occupy: occupyIDDto){
