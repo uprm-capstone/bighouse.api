@@ -42,14 +42,16 @@ export class ApartmentService {
     return newApartment;
   }
 
-  deleteApartment(apartment: apartmentIDDto) {
-    const holder = {apartment};
+  deleteApartment(id: apartmentIDDto) {
+    const holder = {id};
     const index = apartments.findIndex((object) => {
-      return object.Apartment_ID == apartment.Apartment_ID;
+      return object.Apartment_ID == id.Apartment_ID;
     });
-
-    apartments.splice(index,1);
-    return holder.apartment;
+    if(index != -1){
+      apartments.splice(index,1);
+    }
+    
+    return id;
   }
 
   getApartmentTotalCost(apartment: apartmentIDDto) {

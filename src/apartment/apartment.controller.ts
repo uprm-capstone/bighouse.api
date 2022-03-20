@@ -23,7 +23,7 @@ export class ApartmentController {
   }
 
   @Delete('/delete-apartment')
-  deleteApartment(@Body() apartment: apartmentIDDto) : {Apartment_ID: number} {
+  deleteApartment(@Body() apartment: apartmentIDDto) : apartmentIDDto {
     return this.apartmentService.deleteApartment(apartment);
   }
 
