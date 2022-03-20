@@ -46,7 +46,9 @@ export class UsersService {
             return object.User_ID == user.User_ID;
           });
         
-          users.splice(index,1);
+          if(index != -1){
+              users.splice(index,1);
+          }
           return user;
     }
 }
