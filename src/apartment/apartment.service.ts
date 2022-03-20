@@ -4,7 +4,7 @@ import { Apartment } from 'src/Models/apartment.model';
 import { apartmentIDDto } from './dto/apartmentID.dto';
 import { createApartmentDto } from './dto/createApartment.dto';
 
-const apartments: Apartment[] = [];
+export const apartments: Apartment[] = [];
 
 @Injectable()
 export class ApartmentService {

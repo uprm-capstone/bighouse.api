@@ -3,6 +3,7 @@ import { Occupy } from 'src/Models/occupy.model';
 import { createOccupyDto } from './dto/createOccupy.dto';
 import { occupyIDDto } from './dto/occupyID.dto';
 import { users } from '../users/users.service'
+import { apartments } from '../apartment/apartment.service'
 
 const occupies: Occupy[] = [];
 @Injectable()
@@ -15,10 +16,13 @@ export class OccupyService {
       occupy.Start_Date,
       occupy.End_Date,
     );
-    const index = users.findIndex((object) => {
+    const userVerify = users.findIndex((object) => {
       return object.User_ID == occupy.User_ID;
     });
-    if(index != -1){
+    const apartmentVerify = apartments.findIndex((object) => {
+      return object.Apartment_ID == occupy.Apartment_ID;
+    });
+    if(userVerify != -1 && apartmentVerify != -1){
       occupies.push(newOccupant);
     }
     return newOccupant;
@@ -45,10 +49,13 @@ export class OccupyService {
       occupy.End_Date,
     );
 
-    const index = users.findIndex((object) => {
+    const userVerify = users.findIndex((object) => {
       return object.User_ID == occupy.User_ID;
     });
-    if(index != -1){
+    const apartmentVerify = apartments.findIndex((object) => {
+      return object.Apartment_ID == occupy.Apartment_ID;
+    });
+    if(userVerify != -1 && apartmentVerify != -1){
       occupies.forEach((element) => {
       if (element.Occupy_ID == occupy.Occupy_ID) {
         element.Occupy_ID = occupy.Occupy_ID;
@@ -109,7 +116,13 @@ export class OccupyService {
       return object.Apartment_ID == occupy.Apartment_ID;
     });
 
-    return {User_ID: occupies[index].User_ID};
+    if(index != -1){
+      return {User_ID: occupies[index].User_ID};
+    }
+    else{
+      return {User_ID: null};
+    }
+    
   }
 
   getAptmOccupiedWithUser(occupy: {User_ID: number}){
@@ -117,7 +130,13 @@ export class OccupyService {
       return object.User_ID == occupy.User_ID;
     });
 
-    return {Apartment_ID: occupies[index].Apartment_ID};
+    if(index != -1){
+      return {Apartment_ID: occupies[index].Apartment_ID};
+    }
+    else{
+      return {Apartment_ID: null};
+    }
+    
   }
 
 }
