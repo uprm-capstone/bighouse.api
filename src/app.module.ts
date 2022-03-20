@@ -6,9 +6,10 @@ import { ApartmentModule } from './apartment/apartment.module';
 import { OccupyModule } from './occupy/occupy.module';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { IssuesModule } from './issues/issues.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @Module({
-  imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule],
+  imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule],
   controllers: [AppController],
   providers: [AppService],
 })
