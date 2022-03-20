@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Utilities } from 'src/Models/utilities.model';
 import { createUtilityDto } from './dto/createUtility.dto';
+import { apartments } from 'src/apartment/apartment.service';
 
 const utilities: Utilities[] = [];
 @Injectable()
@@ -14,7 +15,13 @@ export class UtilityService {
       utility.Cost_Per_Unit,
       utility.Unit,
     );
-    utilities.push(newUtility);
+
+    const apartmentVerify = apartments.findIndex((object) => {
+      return object.Apartment_ID == utility.Apartment_ID;
+    });
+    if(apartmentVerify != -1){
+      utilities.push(newUtility);
+    }
     return newUtility;
   }
 
@@ -39,7 +46,14 @@ export class UtilityService {
       utility.Unit,
     );
 
-    utilities.forEach((element) => {
+    const utilityVerify = utilities.findIndex((object) => {
+      return object.Utility_ID == utility.Utility_ID;
+    });
+    const apartmentVerify = apartments.findIndex((object) => {
+      return object.Apartment_ID == utility.Apartment_ID;
+    });
+    if(utilityVerify != -1 && apartmentVerify != -1){
+      utilities.forEach((element) => {
       if (element.Utility_ID == utility.Utility_ID) {
         element.Utility_ID = utility.Utility_ID;
         element.Utility_Name = utility.Utility_Name;
@@ -49,6 +63,8 @@ export class UtilityService {
         element.Unit = utility.Unit;
       }
     });
+    }
+    
     return newUtility;
   }
 
