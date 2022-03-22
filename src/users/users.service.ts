@@ -24,6 +24,24 @@ export class UsersService {
         return users;
     }
 
+    verifyUser(id: {User_ID:number}){
+
+        const index = users.findIndex(object => {
+            return object.User_ID == id.User_ID;
+        });
+        
+        if(index != -1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    getUserList(){
+        return users;
+    }
+
     updateUser(user: createUserDto){
         const newUser = new User(user.User_ID, user.User_Name, user.User_LastName, user.User_Gender, user.User_Birth, user.User_Email);
 
