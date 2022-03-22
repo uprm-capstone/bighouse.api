@@ -36,7 +36,10 @@ export class UsersService {
         else {
             return false;
         }
+    }
 
+    getUserList(){
+        return users;
     }
 
     updateUser(user: createUserDto){
