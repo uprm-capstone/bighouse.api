@@ -23,6 +23,23 @@ export class ApartmentService {
     return apartments;
   }
 
+  verifyApartment(id: {Apartment_ID:number}){
+    const index = apartments.findIndex((object) => {
+      return object.Apartment_ID == id.Apartment_ID;
+    });
+
+    if(index!=-1){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  getApartmentList(){
+    return apartments;
+  }
+
   updateApartment(apartment: createApartmentDto) {
     const newApartment = new Apartment(
       apartment.Apartment_ID,
