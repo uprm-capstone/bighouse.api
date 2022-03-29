@@ -5,17 +5,17 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('/validate')
   getValidation(): Promise<any> {
     return this.appService.getValidation();
   }
 
-  @Get()
+  @Get('/authorization')
   getAuthorization(): Promise<any> {
     return this.appService.getAuthorization();
   }
 
-  @Post()
+  @Post('/auth-create')
   createUser(@Body() user: {email:string, password:string, roles:string}){
     return this.appService.createUser(user)
   }

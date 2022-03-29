@@ -6,7 +6,8 @@ export class AppService {
   constructor(@Inject('USER_VALIDATOR') private client: ClientProxy){}
 
   async createUser(user: {email:string, password:string, roles:string}): Promise<any>{
-    return this.client.send({cmd: 'create-user'}, user);
+    const msg = this.client.send({cmd: 'create-user'}, user);
+    return msg;
   }
 
   async getValidation() {
