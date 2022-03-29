@@ -1,8 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, UnprocessableEntityException } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  constructor(@Inject('USER_VALIDATOR') private client: ClientProxy){}
+
+  async createUser(user: {email:string, password:string, roles:string}): Promise<any>{
+    return this.client.send({cmd: 'create-user'}, user);
+  }
+
+  async getValidation() {
+    const message = await this.client.send({cmd: 'validate'}, 'Pepe');
+    return message;
+  }
+
+  async getAuthorization() {
+    const message = await this.client.send({cmd: 'authorize'}, {email:"pepe@upr.edu", password:"Testing", roles:"User"});
+    return message;
   }
 }
