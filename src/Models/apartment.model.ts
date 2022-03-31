@@ -1,8 +1,23 @@
-export class Apartment {
-  constructor(
-    public Apartment_ID: number,
-    public Occupied: boolean,
-    public Apartment_Number: string,
-    public Apartment_Cost: number,
-  ) {}
+import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript';
+
+@Table
+export class Apartment extends Model {
+  @Column({primaryKey:true})
+  apartment_id: number;
+
+  @Column
+  occupied: boolean;
+
+  @Column
+  apartment_number: string;
+
+  @Column
+  apartment_cost: number;
+
+  // constructor(
+  //   public Apartment_ID: number,
+  //   public Occupied: boolean,
+  //   public Apartment_Number: string,
+  //   public Apartment_Cost: number,
+  // ) {}
 }

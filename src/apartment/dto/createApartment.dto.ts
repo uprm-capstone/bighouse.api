@@ -4,13 +4,13 @@ import { isBooleanObject } from 'util/types';
 export class createApartmentDto {
   @IsNotEmpty()
   @IsNumber()
-  Apartment_ID: number;
+  apartment_id: number;
   @IsNotEmpty()
   @IsBoolean()
-  Occupied: boolean;
+  occupied: boolean;
   @IsNotEmpty()
   @IsString()
-  Apartment_Number: string;
+  apartment_number: string;
   @IsNotEmpty()
-  Apartment_Cost: number;
+  apartment_cost: number;
 }

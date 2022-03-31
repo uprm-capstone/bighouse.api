@@ -8,27 +8,32 @@ import { apartmentIDDto } from './dto/apartmentID.dto';
 export class ApartmentController {
   constructor(private readonly apartmentService: ApartmentService) {}
   @Post('/create-apartment')
-  createApartment(@Body() apartment: createApartmentDto): Apartment {
+  createApartment(@Body() apartment:  {occupied:boolean, apartment_number:string, apartment_cost:number}) {
     return this.apartmentService.createApartment(apartment);
   }
 
   @Get()
-  getApartment(): Apartment[] {
+  getApartments(): Promise<any> {
     return this.apartmentService.getApartments();
   }
 
+  @Get('/apartment')
+  getApartment(@Body() apartment: {apartment_id:number}): Promise<any> {
+    return this.apartmentService.findOne(apartment);
+  }
+
   @Put('/update-apartment')
-  updateApartment(@Body() apartment: createApartmentDto): Apartment {
+  updateApartment(@Body() apartment:  {apartment_id:number, occupied:boolean, apartment_number:string, apartment_cost:number}): Promise<any> {
     return this.apartmentService.updateApartment(apartment);
   }
 
   @Delete('/delete-apartment')
-  deleteApartment(@Body() apartment: apartmentIDDto) : apartmentIDDto {
+  deleteApartment(@Body() apartment: {apartment_id:number}) : Promise<any> {
     return this.apartmentService.deleteApartment(apartment);
   }
 
   @Get('/apartment-total-cost')
-  getApartmentTotalCost(@Body() apartment: apartmentIDDto) : {Apartment_Cost: number} {
+  getApartmentTotalCost(@Body() apartment: {apartment_id:number}) : Promise<any> {
     return this.apartmentService.getApartmentTotalCost(apartment);
   }
 }

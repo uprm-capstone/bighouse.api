@@ -19,12 +19,12 @@ export class IssuesService {
       issue.Issue_Type
     );
 
-    const index = apartments.findIndex((object) => {
-      return object.Apartment_ID == issue.Apartment_ID;
-    });
-    if(index != -1){
-      issues.push(newIssue);
-    }
+    // const index = apartments.findIndex((object) => {
+    //   return object.Apartment_ID == issue.Apartment_ID;
+    // });
+    // if(index != -1){
+    //   issues.push(newIssue);
+    // }
     return newIssue;
   }
 

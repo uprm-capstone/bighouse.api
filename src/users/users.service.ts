@@ -22,7 +22,6 @@ export class UsersService {
       ) {}
 
     async createUser(user:  {user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}) {
-      console.log(user.user_birth);
       this.userModel.create(user);
     }
 

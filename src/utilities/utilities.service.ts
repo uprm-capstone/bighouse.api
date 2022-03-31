@@ -16,12 +16,12 @@ export class UtilityService {
       utility.Unit,
     );
 
-    const apartmentVerify = apartments.findIndex((object) => {
-      return object.Apartment_ID == utility.Apartment_ID;
-    });
-    if(apartmentVerify != -1){
-      utilities.push(newUtility);
-    }
+    // const apartmentVerify = apartments.findIndex((object) => {
+    //   return object.Apartment_ID == utility.Apartment_ID;
+    // });
+    // if(apartmentVerify != -1){
+    //   utilities.push(newUtility);
+    // }
     return newUtility;
   }
 
@@ -49,21 +49,21 @@ export class UtilityService {
     const utilityVerify = utilities.findIndex((object) => {
       return object.Utility_ID == utility.Utility_ID;
     });
-    const apartmentVerify = apartments.findIndex((object) => {
-      return object.Apartment_ID == utility.Apartment_ID;
-    });
-    if(utilityVerify != -1 && apartmentVerify != -1){
-      utilities.forEach((element) => {
-      if (element.Utility_ID == utility.Utility_ID) {
-        element.Utility_ID = utility.Utility_ID;
-        element.Utility_Name = utility.Utility_Name;
-        element.Apartment_ID = utility.Apartment_ID;
-        element.Unit_Quantity = utility.Unit_Quantity;
-        element.Cost_Per_Unit = utility.Cost_Per_Unit;
-        element.Unit = utility.Unit;
-      }
-    });
-    }
+    // const apartmentVerify = apartments.findIndex((object) => {
+    //   return object.Apartment_ID == utility.Apartment_ID;
+    // });
+    // if(utilityVerify != -1 && apartmentVerify != -1){
+    //   utilities.forEach((element) => {
+    //   if (element.Utility_ID == utility.Utility_ID) {
+    //     element.Utility_ID = utility.Utility_ID;
+    //     element.Utility_Name = utility.Utility_Name;
+    //     element.Apartment_ID = utility.Apartment_ID;
+    //     element.Unit_Quantity = utility.Unit_Quantity;
+    //     element.Cost_Per_Unit = utility.Cost_Per_Unit;
+    //     element.Unit = utility.Unit;
+    //   }
+    // });
+    // }
     
     return newUtility;
   }
