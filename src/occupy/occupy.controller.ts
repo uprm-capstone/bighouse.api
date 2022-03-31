@@ -8,52 +8,52 @@ import { OccupyService } from './occupy.service';
 export class OccupyController {
     constructor(private readonly occupyService: OccupyService) {}
     @Post('/create-occupant')
-    createOccupy(@Body() occupy: createOccupyDto): Occupy {
+    createOccupy(@Body() occupy:  {user_id:number, apartment_id:number, start_date:Date, end_date: Date}): Promise<any> {
       return this.occupyService.createOccupy(occupy);
     }
   
     @Get()
-    getAllOccupy(): Occupy[] {
+    getAllOccupy(): Promise<any> {
       return this.occupyService.getAllOccupy();
+    }
+
+    @Get('/get-occupant')
+    findOne(@Body() occupy: {occupy_id:number}): Promise<any> {
+      return this.occupyService.findOne(occupy);
     }
   
     @Put('/update-occupant')
-    updateOccupy(@Body() occupy: createOccupyDto): Occupy {
+    updateOccupy(@Body() occupy:  {occupy_id:number, user_id:number, apartment_id:number, start_date:Date, end_date: Date}): Promise<any> {
       return this.occupyService.updateOccupy(occupy);
     }
   
     @Delete('/delete-occupant')
-    deleteOccupy(@Body() occupy: occupyIDDto) : {Occupy_ID: number} {
+    deleteOccupy(@Body() occupy: {occupy_id:number}): Promise<any> {
       return this.occupyService.deleteOccupy(occupy);
-    }
-  
-    @Get('/get-occupant')
-    getApartmentTotalCost(@Body() occupy: occupyIDDto) : Occupy {
-      return this.occupyService.getOccupy(occupy);
     }
 
     @Get('/get-term')
-    getTerm(@Body() occupy: occupyIDDto) : {Start_Date: Date, End_Date: Date} {
+    getTerm(@Body() occupy: {occupy_id:number}): Promise<any> {
       return this.occupyService.getTerm(occupy);
     }
 
     @Get('/get-apartment-occupied')
-    getApartmentOccupied(@Body() occupy: occupyIDDto) : {Apartment_ID: number} {
+    getApartmentOccupied(@Body() occupy: {occupy_id:number}): Promise<any> {
       return this.occupyService.getApartmentOccupied(occupy);
     }
 
     @Get('/get-user-occupant')
-    getUserOccupied(@Body() occupy: occupyIDDto) : {User_ID: number} {
+    getUserOccupied(@Body() occupy: {occupy_id:number}): Promise<any> {
       return this.occupyService.getUserOccupied(occupy);
     }
 
     @Get('/get-user-occupant-with-apartment')
-    getUserOccupiedWithAptm(@Body() occupy: {Apartment_ID: number}) : {User_ID: number} {
+    getUserOccupiedWithAptm(@Body() occupy: {apartment_id: number}): Promise<any> {
       return this.occupyService.getUserOccupiedWithAptm(occupy);
     }
 
     @Get('/get-apartment-occupant-with-user')
-    getAptmOccupiedWithUser(@Body() occupy: {User_ID: number}) : {Apartment_ID: number} {
+    getAptmOccupiedWithUser(@Body() occupy: {user_id: number}): Promise<any> {
       return this.occupyService.getAptmOccupiedWithUser(occupy);
     }
 }
