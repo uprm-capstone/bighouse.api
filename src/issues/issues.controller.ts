@@ -8,27 +8,27 @@ import { IssuesService } from './issues.service';
 export class IssuesController {
     constructor(private readonly issuesService: IssuesService) {}
     @Post('/create-issue')
-    createIssue(@Body() issue: createIssuesDto): Issue {
+    createIssue(@Body() issue: {issue_id:number, title:string, apartment_id: number, status: Boolean, date_created:Date, date_closed:Date, description:string, issue_type: string}): Promise<any> {
       return this.issuesService.createIssue(issue);
     }
   
     @Get()
-    getAllIssues(): Issues[] {
+    getAllIssues(): Promise<any> {
       return this.issuesService.getAllIssues();
     }
   
     @Put('/update-issue')
-    updateIssue(@Body() issue: createIssuesDto): Issues {
+    updateIssue(@Body() issue: {issue_id:number, title:string, apartment_id: number, status: Boolean, date_created:Date, date_closed:Date, description:string, issue_type: string}): Promise<any> {
       return this.issuesService.updateIssue(issue);
     }
   
     @Delete('/delete-issue')
-    deleteIssue(@Body() issue: {Issue_ID:number}) : {Issue_ID: number} {
+    deleteIssue(@Body() issue: {issue_id:number}) : Promise<any> {
       return this.issuesService.deleteIssue(issue);
     }
   
     @Get('/get-issue')
-    getIssue(@Body() issue: {Issue_ID:number}) : Issues {
+    getIssue(@Body() issue: {issue_id:number}) : Promise<any> {
       return this.issuesService.getIssue(issue);
     }
     

@@ -12,6 +12,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './Models/user.model';
 import { Apartment } from './Models/apartment.model';
 import { Occupy } from './Models/occupy.model';
+import { Issues } from './Models/issues.model';
 
 @Module({
   imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule, 
@@ -29,7 +30,7 @@ SequelizeModule.forRoot({
   username: 'postgres',
   password: 'example',
   database: 'postgres',
-  models: [User, Apartment, Occupy],
+  models: [User, Apartment, Occupy, Issues],
   define: {
     timestamps: false
   },
