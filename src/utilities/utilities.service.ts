@@ -39,7 +39,12 @@ export class UtilityService {
 
   async getTotalUtilityCost(issue:  { apartment_id: number}): Promise<any> {
     const apartment_id = issue.apartment_id;
-    return this.UtilitiesModel.findAll( {attributes: ['unit_quantity*cost_per_unit'], where: { apartment_id } });
+    const res = this.UtilitiesModel.findAll( {attributes: ['unit_quantity','cost_per_unit'], where: { apartment_id } });
+    let result = 0;
+    (await res).forEach(element => {
+          result = result +(element.unit_quantity*element.cost_per_unit);
+        });
+    return {total_cost: result};
   }
 
   async getApartmentUtilities(id: {apartment_id:number}): Promise<any> {
