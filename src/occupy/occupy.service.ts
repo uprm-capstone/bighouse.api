@@ -11,20 +11,20 @@ export class OccupyService {
   createOccupy(occupy: createOccupyDto) {
     const newOccupant = new Occupy(
       occupy.Occupy_ID,
-      occupy.User_ID,
+      occupy.user_id,
       occupy.Apartment_ID,
       occupy.Start_Date,
       occupy.End_Date,
     );
-    const userVerify = users.findIndex((object) => {
-      return object.User_ID == occupy.User_ID;
-    });
-    const apartmentVerify = apartments.findIndex((object) => {
-      return object.Apartment_ID == occupy.Apartment_ID;
-    });
-    if(userVerify != -1 && apartmentVerify != -1){
-      occupies.push(newOccupant);
-    }
+    // const userVerify = users.findIndex((object) => {
+    //   return object.user_id == occupy.user_id;
+    // });
+    // const apartmentVerify = apartments.findIndex((object) => {
+    //   return object.Apartment_ID == occupy.Apartment_ID;
+    // });
+    // if(userVerify != -1 && apartmentVerify != -1){
+    //   occupies.push(newOccupant);
+    // }
     return newOccupant;
     
   }
@@ -43,29 +43,29 @@ export class OccupyService {
   updateOccupy(occupy: createOccupyDto) {
     const newOccupant = new Occupy(
       occupy.Occupy_ID,
-      occupy.User_ID,
+      occupy.user_id,
       occupy.Apartment_ID,
       occupy.Start_Date,
       occupy.End_Date,
     );
 
-    const userVerify = users.findIndex((object) => {
-      return object.User_ID == occupy.User_ID;
-    });
-    const apartmentVerify = apartments.findIndex((object) => {
-      return object.Apartment_ID == occupy.Apartment_ID;
-    });
-    if(userVerify != -1 && apartmentVerify != -1){
-      occupies.forEach((element) => {
-      if (element.Occupy_ID == occupy.Occupy_ID) {
-        element.Occupy_ID = occupy.Occupy_ID;
-        element.User_ID = occupy.User_ID;
-        element.Apartment_ID = occupy.Apartment_ID;
-        element.Start_Date = occupy.Start_Date;
-        element.End_Date = occupy.End_Date;
-      }
-    });
-    }
+    // const userVerify = users.findIndex((object) => {
+    //   return object.user_id == occupy.user_id;
+    // });
+    // const apartmentVerify = apartments.findIndex((object) => {
+    //   return object.Apartment_ID == occupy.Apartment_ID;
+    // });
+    // if(userVerify != -1 && apartmentVerify != -1){
+    //   occupies.forEach((element) => {
+    //   if (element.Occupy_ID == occupy.Occupy_ID) {
+    //     element.Occupy_ID = occupy.Occupy_ID;
+    //     element.User_ID = occupy.user_id;
+    //     element.Apartment_ID = occupy.Apartment_ID;
+    //     element.Start_Date = occupy.Start_Date;
+    //     element.End_Date = occupy.End_Date;
+    //   }
+    // });
+    // }
     
     return newOccupant;
   }

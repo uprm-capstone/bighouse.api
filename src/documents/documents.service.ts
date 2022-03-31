@@ -16,12 +16,12 @@ export class DocumentsService {
       document.Signature,
       document.Require_Signature,
     );
-    const userVerify = users.findIndex((object) => {
-      return object.User_ID == document.User_ID;
-    });
-    if(userVerify != -1){
-      documents.push(newDocument);
-    }
+    // const userVerify = users.findIndex((object) => {
+    //   return object.user_id == document.User_ID;
+    // });
+    // if(userVerify != -1){
+    //   documents.push(newDocument);
+    // }
     return newDocument;
   }
 
@@ -46,21 +46,21 @@ export class DocumentsService {
       document.Require_Signature,
     );
 
-    const userVerify = users.findIndex((object) => {
-      return object.User_ID == document.User_ID;
-    });
-    if(userVerify != -1){
-      documents.forEach((element) => {
-      if (element.Document_ID == document.Document_ID) {
-        element.Document_ID = document.Document_ID;
-        element.User_ID = document.User_ID;
-        element.Document = document.Document;
-        element.Sign_On = document.Sign_On;
-        element.Signature = document.Signature;
-        element.Require_Signature = document.Require_Signature;
-      }
-    });
-    }
+    // const userVerify = users.findIndex((object) => {
+    //   return object.user_id == document.User_ID;
+    // });
+    // if(userVerify != -1){
+    //   documents.forEach((element) => {
+    //   if (element.Document_ID == document.Document_ID) {
+    //     element.Document_ID = document.Document_ID;
+    //     element.User_ID = document.User_ID;
+    //     element.Document = document.Document;
+    //     element.Sign_On = document.Sign_On;
+    //     element.Signature = document.Signature;
+    //     element.Require_Signature = document.Require_Signature;
+    //   }
+    // });
+    // }
     return newDocument;
   }
 

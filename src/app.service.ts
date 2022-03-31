@@ -1,9 +1,11 @@
 import { Injectable, Inject, UnprocessableEntityException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class AppService {
-  constructor(@Inject('USER_VALIDATOR') private client: ClientProxy){}
+
+  constructor(@Inject('USER_VALIDATOR') private client: ClientProxy, private sequelize: Sequelize){}
 
   async createUser(user: {email:string, password:string, roles:string}): Promise<any>{
     const msg = this.client.send({cmd: 'create-user'}, user);

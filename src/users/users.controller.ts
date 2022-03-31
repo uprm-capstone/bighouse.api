@@ -7,22 +7,27 @@ import { UsersService } from './users.service';
 export class UsersController {
     constructor(private readonly userService:UsersService){}
     @Post('/create-user')
-    createUser(@Body() user: createUserDto): User {
-        return this.userService.createUser(user);
+    createUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}) {
+        this.userService.createUser(user);
     }
 
     @Get()
-    getUsers(): User[] {
-        return this.userService.getUsers();
+    getUsers(): Promise<any> {
+        return this.userService.findAll();
+    }
+
+    @Get('/user')
+    getUser(@Body() id: {user_id:number}): Promise<any> {
+        return this.userService.findOne(id);
     }
 
     @Put('/update-user')
-    updateUser(@Body() user: createUserDto): User {
+    updateUser(@Body() user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}): Promise<any> {
         return this.userService.updateUser(user);
     }
 
     @Delete('/delete-user')
-    deleteUser(@Body() user:{User_ID:number}):{User_ID:number} {
+    deleteUser(@Body() user:{user_id:number}): Promise<any> {
         return this.userService.deleteUser(user);
     }
 

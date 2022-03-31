@@ -6,7 +6,7 @@ export class createOccupyDto {
   Occupy_ID: number;
   @IsNotEmpty()
   @IsNumber()
-  User_ID: number;
+  user_id: number;
   @IsNotEmpty()
   @IsNumber()
   Apartment_ID: number;
