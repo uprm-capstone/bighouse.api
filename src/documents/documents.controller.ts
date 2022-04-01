@@ -8,27 +8,27 @@ import { DocumentsService } from './documents.service';
 export class DocumentsController {
     constructor(private readonly documentsService: DocumentsService) {}
     @Post('/create-document')
-    createDocument(@Body() document: createDocumentsDto): Document {
+    createDocument(@Body() document: {user_id: number, document: string, sign_on: Date, signature: string, require_signature: boolean}): Promise<any> {
       return this.documentsService.createDocument(document);
     }
   
     @Get()
-    getAllDocuments(): Documents[] {
+    getAllDocuments(): Promise<any> {
       return this.documentsService.getAllDocuments();
     }
   
     @Put('/update-document')
-    updateDocuments(@Body() document: createDocumentsDto): Documents {
+    updateDocuments(@Body() document: {document_id: number, user_id: number, document: string, sign_on: Date, signature: string, require_signature: boolean}): Promise<any> {
       return this.documentsService.updateDocument(document);
     }
   
     @Delete('/delete-document')
-    deleteDocument(@Body() document: {Document_ID:number}) : {Document_ID: number} {
+    deleteDocument(@Body() document: {document_id:number}) : Promise <any> {
       return this.documentsService.deleteDocument(document);
     }
   
     @Get('/get-document')
-    getDocument(@Body() document: {Document_ID:number}) : Documents {
+    getDocument(@Body() document: {document_id:number}): Promise<any> {
       return this.documentsService.getDocument(document);
     }
 

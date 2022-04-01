@@ -14,6 +14,7 @@ import { Apartment } from './Models/apartment.model';
 import { Occupy } from './Models/occupy.model';
 import { Issues } from './Models/issues.model';
 import { Utilities } from './Models/utilities.model';
+import { Documents } from './Models/documents.model';
 
 @Module({
   imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule, 
@@ -31,7 +32,7 @@ SequelizeModule.forRoot({
   username: 'postgres',
   password: 'example',
   database: 'postgres',
-  models: [User, Apartment, Occupy, Issues, Utilities],
+  models: [User, Apartment, Occupy, Issues, Utilities, Documents],
   define: {
     timestamps: false
   },
