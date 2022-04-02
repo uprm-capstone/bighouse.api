@@ -14,7 +14,11 @@ export class UtilityService {
   ) {}
 
   async createUtility(utility:  { utility_name: string, apartment_id: number, unit_quantity: number, cost_per_unit: number, unit: string }): Promise<any> {
-    this.UtilitiesModel.create(utility);
+    this.UtilitiesModel.create(utility)
+    .catch(function(err){
+      console.log("Error: "+err);
+      return {"Error": err};
+    });
   }
 
   getUtility(id: {utility_id:number}): Promise<any> {

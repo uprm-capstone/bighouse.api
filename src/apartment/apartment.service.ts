@@ -16,7 +16,11 @@ export class ApartmentService {
   ) {}
 
   async createApartment(apartment:  {occupied:boolean, apartment_number:string, apartment_cost:number}) {
-    this.ApartmentModel.create(apartment);
+    this.ApartmentModel.create(apartment)
+    .catch(function(err){
+      console.log("Error: "+err);
+      return {"Error": err};
+    });
   }
 
   findOne(id: {apartment_id:number}): Promise<any> {

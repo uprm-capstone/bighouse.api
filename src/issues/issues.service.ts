@@ -15,7 +15,11 @@ export class IssuesService {
   ) {}
 
   async createIssue(issue:  {title:string, apartment_id: number, status: Boolean, date_created:Date, date_closed:Date, description:string, issue_type: string}): Promise<any> {
-    this.IssuesModel.create(issue);
+    this.IssuesModel.create(issue)
+    .catch(function(err){
+      console.log("Error: "+err);
+      return {"Error": err};
+    });
   }
 
   getIssue(id: {issue_id:number}): Promise<any> {

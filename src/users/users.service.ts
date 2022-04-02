@@ -22,7 +22,11 @@ export class UsersService {
       ) {}
 
     async createUser(user:  {user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}) {
-      this.userModel.create(user);
+      this.userModel.create(user)
+      .catch(function(err){
+        console.log("Error: "+err);
+        return {"Error": err};
+      });
     }
 
     findOne(id: {user_id:number}): Promise<any> {

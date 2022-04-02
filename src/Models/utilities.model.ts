@@ -5,7 +5,10 @@ import { User } from './user.model';
 
 @Table
 export class Utilities extends Model {
-  @Column({primaryKey:true})
+  @Column({
+    primaryKey:true,
+    autoIncrement: true
+  })
   utility_id: number;
 
   @Column

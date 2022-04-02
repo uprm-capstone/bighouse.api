@@ -5,7 +5,10 @@ import { User } from './user.model';
 
 @Table
 export class Documents extends Model {
-  @Column({primaryKey:true})
+  @Column({
+    primaryKey:true,
+    autoIncrement: true
+  })
   document_id: number;
 
   @Column

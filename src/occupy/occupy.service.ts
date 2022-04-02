@@ -16,7 +16,11 @@ export class OccupyService {
   ) {}
 
   async createOccupy(occupy:  {user_id:number, apartment_id:number, start_date:Date, end_date: Date}): Promise<any> {
-    this.OccupyModel.create(occupy);
+    this.OccupyModel.create(occupy)
+    .catch(function(err){
+      console.log("Error: "+err);
+      return {"Error": err};
+    });
   }
 
   findOne(id: {occupy_id:number}): Promise<any> {

@@ -15,7 +15,11 @@ export class DocumentsService {
   ) {}
 
   async createDocument(document:  {user_id: number, document: string, sign_on: Date, signature: string, require_signature: boolean}): Promise<any> {
-    this.DocumentsModel.create(document);
+    this.DocumentsModel.create(document)
+    .catch(function(err){
+      console.log("Error: "+err);
+      return {"Error": err};
+    });
   }
 
   getDocument(id: {document_id:number}): Promise<any> {

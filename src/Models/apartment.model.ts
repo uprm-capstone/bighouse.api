@@ -3,7 +3,10 @@ import { Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Table
 export class Apartment extends Model {
-  @Column({primaryKey:true})
+  @Column({
+    primaryKey:true,
+    autoIncrement: true
+  })
   apartment_id: number;
 
   @Column
