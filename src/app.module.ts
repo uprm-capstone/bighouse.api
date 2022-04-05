@@ -15,6 +15,9 @@ import { Occupy } from './Models/occupy.model';
 import { Issues } from './Models/issues.model';
 import { Utilities } from './Models/utilities.model';
 import { Documents } from './Models/documents.model';
+import { PaymentsController } from './payments/payments.controller';
+import { PaymentsService } from './payments/payments.service';
+import { Payments } from './Models/payments.model';
 
 @Module({
   imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule, 
@@ -32,7 +35,7 @@ SequelizeModule.forRoot({
   username: 'postgres',
   password: 'example',
   database: 'postgres',
-  models: [User, Apartment, Occupy, Issues, Utilities, Documents],
+  models: [User, Apartment, Occupy, Issues, Utilities, Documents, Payments],
   define: {
     timestamps: false
   },
