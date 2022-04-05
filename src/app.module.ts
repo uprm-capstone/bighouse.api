@@ -7,6 +7,7 @@ import { OccupyModule } from './occupy/occupy.module';
 import { UtilitiesModule } from './utilities/utilities.module';
 import { IssuesModule } from './issues/issues.module';
 import { DocumentsModule } from './documents/documents.module';
+import { PaymentsModule } from './payments/payments.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './Models/user.model';
@@ -20,7 +21,7 @@ import { PaymentsService } from './payments/payments.service';
 import { Payments } from './Models/payments.model';
 
 @Module({
-  imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule, 
+  imports: [UsersModule, ApartmentModule, OccupyModule, UtilitiesModule, IssuesModule, DocumentsModule, PaymentsModule,
     ClientsModule.register([{name: 'USER_VALIDATOR', transport: Transport.TCP, 
     options: {
       host: 'localhost',

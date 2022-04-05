@@ -9,4 +9,4 @@ import { Payments } from 'src/Models/payments.model';
   providers: [PaymentsService],
   controllers: [PaymentsController]
 })
-export class OccupyModule {}
+export class PaymentsModule {}
