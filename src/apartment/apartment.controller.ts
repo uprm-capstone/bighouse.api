@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
+import { Query, Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
 import { Apartment } from 'src/Models/apartment.model';
 import { createApartmentDto } from './dto/createApartment.dto';
 import { ApartmentService } from './apartment.service';
@@ -33,7 +33,7 @@ export class ApartmentController {
   }
 
   @Get('/apartment-total-cost')
-  getApartmentTotalCost(@Body() apartment: {apartment_id:number}) : Promise<any> {
-    return this.apartmentService.getApartmentTotalCost(apartment);
+  getApartmentTotalCost(@Query() query) : Promise<any> {
+    return this.apartmentService.getApartmentTotalCost(query);
   }
 }
