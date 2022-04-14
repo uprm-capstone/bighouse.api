@@ -23,6 +23,11 @@ export class PaymentsService {
     return this.PaymentModel.findOne({ where: { payment_id } });
   }
 
+  findUser(id: {user_id:number}): Promise<any> {
+    const user_id = id.user_id;
+    return this.PaymentModel.findOne({ where: { user_id } });
+  }
+
   async getAllOccupy(): Promise<any> {
   return this.PaymentModel.findAll();
   }

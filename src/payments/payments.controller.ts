@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Query } from '@nestjs/common';
 import { Payments } from 'src/Models/payments.model';
 import { PaymentsService } from './payments.service';
 
@@ -18,6 +18,11 @@ export class PaymentsController {
     @Get('/get-payment')
     findOne(@Body() payment: {payment_id:number}): Promise<any> {
       return this.PaymentsService.findOne(payment);
+    }
+
+    @Get('/get-payment-user')
+    findUser(@Query() query): Promise<any> {
+      return this.PaymentsService.findUser(query);
     }
   
     @Put('/update-payment')
