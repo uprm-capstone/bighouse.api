@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Query } from '@nestjs/common';
 import { Utilities } from 'src/Models/utilities.model';
 import { createUtilityDto } from './dto/createUtility.dto';
 import { UtilityService } from './utilities.service';
@@ -32,8 +32,8 @@ export class UtilityController {
     }
 
     @Get('/get-utility-total')
-    getTotalUtilityCost(@Body() apartment_ID: {apartment_id:number}): Promise<any> {
-      return this.utilityService.getTotalUtilityCost(apartment_ID);
+    getTotalUtilityCost(@Query() query): Promise<any> {
+      return this.utilityService.getTotalUtilityCost(query);
     }
 
     @Get('/get-apartment-utilities')
