@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Query } from '@nestjs/common';
 import { Issues } from 'src/Models/issues.model';
 import { createIssuesDto } from './dto/createIssues.dto';
 import { Issue } from './entities/issue.entity';
@@ -15,6 +15,11 @@ export class IssuesController {
     @Get()
     getAllIssues(): Promise<any> {
       return this.issuesService.getAllIssues();
+    }
+
+    @Get('/get-apartment-issues')
+    getApartmentIssues(@Query() query) : Promise<any> {
+      return this.issuesService.getApartmentIssues(query);
     }
   
     @Put('/update-issue')

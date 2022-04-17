@@ -31,6 +31,11 @@ export class IssuesService {
   return this.IssuesModel.findAll();
   }
 
+  async getApartmentIssues(id: {apartment_id:number}): Promise<any> {
+    const apartment_id = id.apartment_id;
+    return this.IssuesModel.findAll({where: { apartment_id } });
+    }
+
   async updateIssue(issue:  {issue_id:number, title:string, apartment_id: number, status: Boolean, date_created:Date, date_closed:Date, description:string, issue_type: string}): Promise<any> {
     const issue_id = issue.issue_id;
     return this.IssuesModel.update(issue, { where: { issue_id } });
