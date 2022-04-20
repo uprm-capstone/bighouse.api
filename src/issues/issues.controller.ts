@@ -9,6 +9,8 @@ export class IssuesController {
     constructor(private readonly issuesService: IssuesService) {}
     @Post('/create-issue')
     createIssue(@Body() issue: {issue_id:number, title:string, apartment_id: number, status: Boolean, date_created:Date, date_closed:Date, description:string, issue_type: string}): Promise<any> {
+      console.log("New issue:");
+      console.log(issue);
       return this.issuesService.createIssue(issue);
     }
   

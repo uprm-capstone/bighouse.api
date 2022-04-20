@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Delete, Query } from '@nestjs/common';
 import { Occupy } from 'src/Models/occupy.model';
 import { createOccupyDto } from './dto/createOccupy.dto';
 import { occupyIDDto } from './dto/occupyID.dto';
@@ -48,12 +48,12 @@ export class OccupyController {
     }
 
     @Get('/get-user-occupant-with-apartment')
-    getUserOccupiedWithAptm(@Body() occupy: {apartment_id: number}): Promise<any> {
-      return this.occupyService.getUserOccupiedWithAptm(occupy);
+    getUserOccupiedWithAptm(@Query() query): Promise<any> {
+      return this.occupyService.getUserOccupiedWithAptm(query);
     }
 
     @Get('/get-apartment-occupant-with-user')
-    getAptmOccupiedWithUser(@Body() occupy: {user_id: number}): Promise<any> {
-      return this.occupyService.getAptmOccupiedWithUser(occupy);
+    getAptmOccupiedWithUser(@Query() query): Promise<any> {
+      return this.occupyService.getAptmOccupiedWithUser(query);
     }
 }

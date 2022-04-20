@@ -21,6 +21,11 @@ export class UsersController {
         return this.userService.findOne(query);
     }
 
+    @Get('/user-by-email')
+    getUserByEmail(@Query() query): Promise<any> {
+        return this.userService.findOneByEmail(query);
+    }
+
     @Put('/update-user')
     updateUser(@Body() user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}): Promise<any> {
         return this.userService.updateUser(user);

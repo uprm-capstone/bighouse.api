@@ -12,13 +12,13 @@ export class AppService {
     return msg;
   }
 
-  async getValidation() {
-    const message = await this.client.send({cmd: 'validate'}, 'Pepe');
+  async getValidation(token:string) {
+    const message = await this.client.send({cmd: 'validate'}, token);
     return message;
   }
 
-  async getAuthorization() {
-    const message = await this.client.send({cmd: 'authorize'}, {email:"pepe@upr.edu", password:"Testing", roles:"User"});
+  async getAuthorization(user: {email:string, password:string, roles:string[]}) {
+    const message = await this.client.send({cmd: 'authorize'}, user);
     return message;
   }
 }

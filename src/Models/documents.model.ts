@@ -21,6 +21,9 @@ export class Documents extends Model {
   sign_on: Date;
 
   @Column
+  date_created: Date;
+
+  @Column
   signature: string;
 
   @Column

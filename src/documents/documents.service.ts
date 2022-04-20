@@ -14,7 +14,7 @@ export class DocumentsService {
     private DocumentsModel: typeof Documents,
   ) {}
 
-  async createDocument(document:  {user_id: number, document: string, sign_on: Date, signature: string, require_signature: boolean}): Promise<any> {
+  async createDocument(document:  {user_id: number, document: string, sign_on: Date, date_created:Date, signature: string, require_signature: boolean}): Promise<any> {
     const result = this.DocumentsModel.create(document)
     .catch(function(err){
       return {Error: err};
@@ -27,11 +27,16 @@ export class DocumentsService {
     return this.DocumentsModel.findOne({ where: { document_id } });
   }
 
+  getUserDocuments(id: {user_id:number}): Promise<any> {
+    const user_id = id.user_id;
+    return this.DocumentsModel.findAll({ where: { user_id } });
+  }
+
   async getAllDocuments(): Promise<any> {
   return this.DocumentsModel.findAll();
   }
 
-  async updateDocument(document:  {document_id: number, user_id: number, document: string, sign_on: Date, signature: string, require_signature: boolean}): Promise<any> {
+  async updateDocument(document:  {document_id: number, user_id: number, document: string, sign_on: Date, date_created:Date , signature: string, require_signature: boolean}): Promise<any> {
     const document_id = document.document_id;
     return this.DocumentsModel.update(document, { where: { document_id } });
   }

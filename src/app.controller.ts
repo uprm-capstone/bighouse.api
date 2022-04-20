@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -6,13 +6,14 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/validate')
-  getValidation(): Promise<any> {
-    return this.appService.getValidation();
+  getValidation(@Query() query): Promise<any> {
+    return this.appService.getValidation(query);
   }
 
   @Get('/authorization')
-  getAuthorization(): Promise<any> {
-    return this.appService.getAuthorization();
+  getAuthorization(@Query() query): Promise<any> {
+    console.log("Data in query: "+query.email + query.password + query.roles);
+    return this.appService.getAuthorization(query);
   }
 
   @Post('/auth-create')

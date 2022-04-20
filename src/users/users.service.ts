@@ -34,6 +34,11 @@ export class UsersService {
       return this.userModel.findOne({ where: { user_id } });
     }
 
+    findOneByEmail(id: {user_email:string}): Promise<any> {
+      const user_email = id.user_email;
+      return this.userModel.findOne({ where: { user_email } });
+    }
+
     async findAll(): Promise<any> {
     return this.userModel.findAll();
     }
