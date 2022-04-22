@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Payments } from 'src/Models/payments.model';
 import { InjectModel } from '@nestjs/sequelize';
 
+
 @Injectable()
 export class PaymentsService {
 
@@ -10,7 +11,20 @@ export class PaymentsService {
     private PaymentModel: typeof Payments,
   ) {}
 
-  async createOccupy(payment:  {user_id:number, payment_date:Date, total: number, utility_cost:number, apartment_cost: number}): Promise<any> {
+  async createPayment(payment:  {payment_date:Date, total: number, utility_cost:number, apartment_cost: number, amount: number, id: string}): Promise<any> {
+    
+    require('dotenv').config()
+    const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+
+    const newPayment = await stripe.paymentIntents.create({
+			amount:payment.amount,
+			currency: "USD",
+			description: "BigHouse",
+			payment_method: payment.id,
+			confirm: true
+		})
+		// console.log("Payment", newPayment)
+
     const result = this.PaymentModel.create(payment)
     .catch(function(err){
       return {Error: err};
@@ -28,19 +42,19 @@ export class PaymentsService {
     return this.PaymentModel.findOne({ where: { user_id } });
   }
 
-  async getAllOccupy(): Promise<any> {
+  async getAllPayments(): Promise<any> {
   return this.PaymentModel.findAll();
   }
 
-  async updateOccupy(payment:  {payment_id:number, user_id:number, payment_date:Date, total: number, utility_cost:number, apartment_cost: number}): Promise<any> {
+  async updatePayment(payment:  {payment_id:number, user_id:number, payment_date:Date, total: number, utility_cost:number, apartment_cost: number}): Promise<any> {
     const payment_id = payment.payment_id;
     return this.PaymentModel.update(payment, { where: { payment_id } });
   }
 
-  async deleteOccupy(id: {payment_id:number}): Promise<any> {
-    const occupy = await this.findOne(id);
-    await occupy.destroy();
-    return occupy;
+  async deletePayment(id: {payment_id:number}): Promise<any> {
+    const payment = await this.findOne(id);
+    await payment.destroy();
+    return payment;
   }
 
 }
