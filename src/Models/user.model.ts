@@ -23,6 +23,9 @@ export class User extends Model {
   @Column
   user_email: string;
 
+  @Column
+  password: string;
+
 //   @Column({ defaultValue: true })
 //   isActive: boolean;
 }

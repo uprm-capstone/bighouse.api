@@ -29,6 +29,20 @@ export class UsersService {
       return result;
     }
 
+    async createNewUser(user:  {user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password:string}) {
+      const result = this.userModel.create(user)
+      .catch(function(err){
+        return {Error: err};
+      });
+      return result;
+    }
+
+    verify(data: {user_email:string, password:string}): Promise<any>{
+      const user_email = data.user_email;
+      const password = data.password;
+      return this.userModel.findOne({where: {user_email, password}})
+    } 
+
     findOne(id: {user_id:number}): Promise<any> {
       const user_id = id.user_id;
       return this.userModel.findOne({ where: { user_id } });

@@ -6,9 +6,19 @@ import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService:UsersService){}
+    // @Post('/create-user')
+    // createUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}) {
+    //     this.userService.createUser(user);
+    // }
+
     @Post('/create-user')
-    createUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}) {
-        this.userService.createUser(user);
+    createNewUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password:string}) {
+        this.userService.createNewUser(user);
+    }
+
+    @Get('/verify')
+    verifyAccount(@Query() query): Promise<any> {
+        return this.userService.verify(query);
     }
 
     @Get()
