@@ -18,8 +18,8 @@ export class ApartmentController {
   }
 
   @Get('/apartment')
-  getApartment(@Body() apartment: {apartment_id:number}): Promise<any> {
-    return this.apartmentService.findOne(apartment);
+  getApartment(@Query() query): Promise<any> {
+    return this.apartmentService.findOne(query);
   }
 
   @Put('/update-apartment')

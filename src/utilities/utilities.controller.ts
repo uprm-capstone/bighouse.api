@@ -37,8 +37,8 @@ export class UtilityController {
     }
 
     @Get('/get-apartment-utilities')
-    getApartmentUtilities(@Body() apartment_ID: {apartment_id:number}): Promise<any> {
-      return this.utilityService.getApartmentUtilities(apartment_ID);
+    getApartmentUtilities(@Query() query): Promise<any> {
+      return this.utilityService.getApartmentUtilities(query);
     }
 
 }

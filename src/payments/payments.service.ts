@@ -39,7 +39,14 @@ export class PaymentsService {
 
   findUser(id: {user_id:number}): Promise<any> {
     const user_id = id.user_id;
-    return this.PaymentModel.findOne({ where: { user_id } });
+    return this.PaymentModel.findOne({ where: { user_id },order: [
+      ["payment_id", "DESC"],
+    ], });
+  }
+
+  findUserPayments(id: {user_id:number}): Promise<any> {
+    const user_id = id.user_id;
+    return this.PaymentModel.findAll({ where: { user_id } });
   }
 
   async getAllPayments(): Promise<any> {

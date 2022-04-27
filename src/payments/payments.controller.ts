@@ -18,13 +18,18 @@ export class PaymentsController {
     }
 
     @Get('/get-payment')
-    findOne(@Body() payment: {payment_id:number}): Promise<any> {
-      return this.PaymentsService.findOne(payment);
+    findOne(@Query() query): Promise<any> {
+      return this.PaymentsService.findOne(query);
     }
 
     @Get('/get-payment-user')
     findUser(@Query() query): Promise<any> {
       return this.PaymentsService.findUser(query);
+    }
+
+    @Get('/get-payments-user')
+    findUserPayments(@Query() query): Promise<any> {
+      return this.PaymentsService.findUserPayments(query);
     }
   
     @Put('/update-payment')
