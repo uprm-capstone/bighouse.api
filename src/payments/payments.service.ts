@@ -13,7 +13,7 @@ export class PaymentsService {
 
   async createPayment(payment:  {payment_date:Date, total: number, utility_cost:number, apartment_cost: number, amount: number, id: string}): Promise<any> {
     
-    require('dotenv').config()
+    require('dotenv').config();
     const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 
     const newPayment = await stripe.paymentIntents.create({
