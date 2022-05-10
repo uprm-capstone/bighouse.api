@@ -12,8 +12,8 @@ export class UsersController {
     // }
 
     @Post('/create-user')
-    createNewUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password:string}) {
-        this.userService.createNewUser(user);
+    createNewUser(@Body() user: {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password:string}): Promise<any> {
+        return this.userService.createNewUser(user);
     }
 
     @Get('/verify')
@@ -37,7 +37,7 @@ export class UsersController {
     }
 
     @Put('/update-user')
-    updateUser(@Body() user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}): Promise<any> {
+    updateUser(@Body() user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password:string}): Promise<any> {
         return this.userService.updateUser(user);
     }
 

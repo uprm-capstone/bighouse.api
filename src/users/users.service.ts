@@ -57,7 +57,7 @@ export class UsersService {
     return this.userModel.findAll();
     }
 
-    async updateUser(user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string}): Promise<any> {
+    async updateUser(user:  {user_id:number, user_name:string, user_lastname:string, user_gender:string, user_birth:string, user_email:string, password: string}): Promise<any> {
       // return this.userModel.update(user_id)
       const user_id = user.user_id
       return this.userModel.update(user, { where: { user_id } })
